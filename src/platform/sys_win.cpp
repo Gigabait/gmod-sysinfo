@@ -3,6 +3,10 @@
 #include "sys_win.h"
 
 namespace Sysinfo {
+	int Uptime() {
+		int sec = GetTickCount() / 1000;
+		return sec;
+	}
 	namespace Mem {
 		double GetUsedVirtual() {
 			MEMORYSTATUSEX memInfo;

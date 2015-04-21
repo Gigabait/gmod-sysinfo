@@ -11,6 +11,8 @@
 using namespace GarrysMod::Lua;
 
 namespace Sysinfo {
+	int Uptime();
+
 	namespace Mem {
 		double GetUsedVirtual();
 		double GetTotalVirtual();
@@ -29,6 +31,11 @@ namespace Sysinfo {
 	}
 }
 
+int Uptime(lua_State* state)
+{
+	LUA->PushNumber(Sysinfo::Uptime());
+	return 1;
+}
 int VMem( lua_State* state )
 {
 	LUA->PushNumber(Sysinfo::Mem::GetUsedVirtual());
@@ -63,6 +70,10 @@ GMOD_MODULE_OPEN()
 
 		LUA->PushString("sysinfo");
 		LUA->CreateTable();
+
+			LUA->PushString("Uptime");
+			LUA->PushCFunction(Uptime);
+			LUA->SetTable(-3);
 
 			LUA->PushString( "VMem" );
 			LUA->PushCFunction( VMem );
