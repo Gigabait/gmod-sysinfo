@@ -56,6 +56,10 @@ namespace Sysinfo {
 
 			return totalPhysMem;
 		}
+
+		double GetActualUsed() {
+
+		}
 	}
 	namespace CPU {
 		static unsigned long long lastTotalUser, lastTotalUserLow, lastTotalSys, lastTotalIdle;
@@ -98,6 +102,12 @@ namespace Sysinfo {
 			lastTotalIdle = totalIdle;
 
 			return percent;
+		}
+		int* GetLoadAverages() {
+			struct sysinfo info;
+			sysinfo(&info);
+
+			return info.loads;
 		}
 	}
 }

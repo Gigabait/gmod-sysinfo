@@ -58,6 +58,9 @@ namespace Sysinfo {
 
 			return counterVal.doubleValue;
 		}
+		int* GetLoadAverages() {
+			return NULL;
+		}
 	}
 	namespace Net {
 

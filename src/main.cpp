@@ -19,12 +19,15 @@ namespace Sysinfo {
 
 		double GetUsedPhysical();
 		double GetTotalPhysical();
+
+		double GetActualUsed();
 	}
 	namespace CPU {
 		void Init();
 		void Destroy();
 
 		double GetUsage();
+		int* GetLoadAverages();
 	}
 	namespace Net {
 
@@ -52,6 +55,17 @@ int CPU(lua_State* state)
 {
 	LUA->PushNumber(Sysinfo::CPU::GetUsage());
 	return 1;
+}
+int LoadAverages(lua_State* state)
+{
+	int* arr = Sysinfo::CPU::GetLoadAverages();
+	if (arr) {
+		LUA->PushNumber(arr[0]);
+		LUA->PushNumber(arr[1]);
+		LUA->PushNumber(arr[2]);
+		return 3;
+	}
+	return 0;
 }
 int Net(lua_State* state)
 {
@@ -85,6 +99,10 @@ GMOD_MODULE_OPEN()
 
 			LUA->PushString("CPU");
 			LUA->PushCFunction(CPU);
+			LUA->SetTable(-3);
+
+			LUA->PushString("LoadAverages");
+			LUA->PushCFunction(LoadAverages);
 			LUA->SetTable(-3);
 
 			LUA->PushString("Net");
