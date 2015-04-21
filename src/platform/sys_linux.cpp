@@ -107,7 +107,7 @@ namespace Sysinfo {
 			struct sysinfo info;
 			sysinfo(&info);
 
-			return info.loads;
+			return (int*) info.loads;
 		}
 	}
 }
