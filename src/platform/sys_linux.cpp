@@ -9,12 +9,6 @@ namespace Sysinfo {
 		
 		return memInfo.uptime;
 	}
-	int[] LoadAverages() {
-		struct sysinfo memInfo;
-		sysinfo(&memInfo);
-
-		return memInfo.loads;
-	}
 	namespace Mem {
 		double GetUsedVirtual() {
 			struct sysinfo memInfo;
