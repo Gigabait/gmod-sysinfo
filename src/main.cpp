@@ -2,10 +2,10 @@
 #include <stdio.h>
 
 #ifdef _WIN32
-#include "platform\sys_win.h"
+#include "platform/sys_win.h"
 #endif
 #ifdef __linux__
-#include "platform\sys_linux.h"
+#include "platform/sys_linux.h"
 #endif
 
 using namespace GarrysMod::Lua;
